@@ -11,4 +11,5 @@ public class EmbeddedFactory {
 //	private static final HashMap< Color, EmbeddedImage> imageByDimension
 //	= new HashMap< Color, EmbeddedImage>();
 	
+	
 }

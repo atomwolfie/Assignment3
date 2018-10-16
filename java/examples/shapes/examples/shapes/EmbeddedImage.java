@@ -15,6 +15,7 @@ public class EmbeddedImage extends ShapeComponent{
 
 	
 	private int dimensionX,dimensionY, locationX, locationY;
+	private String fileName;
 
 	
 	
@@ -25,14 +26,32 @@ public class EmbeddedImage extends ShapeComponent{
 		setLocationY(0);
 	}
 	
-	public EmbeddedImage(int x, int y){
-		setX(x);
-		setY(y);
-		setLocationX(x);
-		setLocationY(y);	
+	
+	public EmbeddedImage(String newFile){
+		fileName = newFile;
+		setX(1000);
+		setY(750);	
+		setLocationX(0);
+		setLocationY(0);
 	}
 	
-	public void showImage(String fileName){
+	public EmbeddedImage(int x, int y, int xLocation, int yLocation){
+		setX(x);
+		setY(y);
+		setLocationX(xLocation);
+		setLocationY(yLocation);	
+	}
+	
+	
+	public EmbeddedImage(String newFile,int x, int y, int xLocation, int yLocation){
+		fileName = newFile;
+		setX(x);
+		setY(y);
+		setLocationX(xLocation);
+		setLocationY(yLocation);	
+	}
+	
+	public void showImage(){
 		try {
             JFrame frame = new JFrame();
             File imageFile = new File(fileName);
@@ -54,6 +73,13 @@ public class EmbeddedImage extends ShapeComponent{
         }
 	}
 
+	public String getFilename(){
+		return fileName;
+	}
+	
+	public void setFilename(String newName){
+		fileName = newName;
+	}
 	
 	
 	public int getX(){

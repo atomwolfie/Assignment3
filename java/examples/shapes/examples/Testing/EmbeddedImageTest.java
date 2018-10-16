@@ -12,11 +12,9 @@ public class EmbeddedImageTest {
 	@Test
 	public void testShowImage()  {
 	
-	EmbeddedImage bitImage = new EmbeddedImage();
-	
-	String userInput = "bitmap-image-icon.bmp";
-	
-	bitImage.showImage(userInput);
+	EmbeddedImage bitImage = new EmbeddedImage("bitmap-image-icon.bmp");
+		
+	bitImage.showImage();
 	
 	}
 
