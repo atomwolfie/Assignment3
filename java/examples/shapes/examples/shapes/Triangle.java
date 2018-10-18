@@ -30,7 +30,8 @@ public class Triangle extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Triangle(double x, double y, double t1, double t2, double l1, double l2, double r1, double r2) throws ShapeException {
-        Validator.validatePositiveDouble(t1, "Invalid point");
+    	setShapeType("Triangle");
+    	Validator.validatePositiveDouble(t1, "Invalid point");
         Validator.validatePositiveDouble(t2, "Invalid point");
         Validator.validatePositiveDouble(l1, "Invalid point");
         Validator.validatePositiveDouble(l2, "Invalid point");
@@ -70,6 +71,7 @@ public class Triangle extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Triangle(Point center, double t1, double t2, double l1, double l2, double r1, double r2) throws ShapeException {
+    	setShapeType("Triangle");
     	Validator.validatePositiveDouble(t1, "Invalid point");
         Validator.validatePositiveDouble(t2, "Invalid point");
         Validator.validatePositiveDouble(l1, "Invalid point");
@@ -181,4 +183,24 @@ public class Triangle extends ShapeComponent {
     	return areaHelper.computeTriangleArea(baseLength, height);
 	}
 
+	
+	@Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		return 
+		getShapeType() + "" 
+		+ Double.toString(newPoint.getX()) + " " 
+		+ Double.toString(newPoint.getY()) + " " 
+		+ Double.toString(t1) + " "
+		+ Double.toString(t2) + " "
+		+ Double.toString(l1) + " "
+		+ Double.toString(l2) + " "
+		+ Double.toString(r1) + " "
+		+ Double.toString(r2)
+		+ "\n";
+	}
+	
+	
 }

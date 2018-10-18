@@ -5,11 +5,23 @@ import java.util.HashMap;
 import examples.shapes.EmbeddedImage;
 
 public class EmbeddedFactory {
-
-	// private static final HashMap<Color, MyRect> rectsByColor = new HashMap<Color, MyRect>();
 	
-//	private static final HashMap< Color, EmbeddedImage> imageByDimension
-//	= new HashMap< Color, EmbeddedImage>();
+	private static final HashMap< Double, EmbeddedImage> imageByLocation
+	= new HashMap<Double, EmbeddedImage>();
+	
+	public static EmbeddedImage getImage(double x, double y, String newFile){
+		
+		double searchKey = x + y;
+		
+		EmbeddedImage image = (EmbeddedImage)imageByLocation.get(searchKey);
+		
+		if(image == null){
+			image = new EmbeddedImage(x,y, newFile);
+			imageByLocation.put(searchKey, image);
+		}
+		
+		return image;
+	}
 	
 	
 }

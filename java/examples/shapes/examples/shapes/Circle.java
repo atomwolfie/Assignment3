@@ -23,9 +23,10 @@ public class Circle extends ShapeComponent{
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Circle(double x, double y, double newRadius) throws ShapeException {
-        Validator.validatePositiveDouble(radius, "Invalid radius");
+    	setShapeType("Circle");
+    	Validator.validatePositiveDouble(radius, "Invalid radius");
         setCenter(x, y);       
-        radius = newRadius;
+        radius = newRadius;        
     }
 
     /**
@@ -36,7 +37,8 @@ public class Circle extends ShapeComponent{
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Circle(Point newCenter, double newRadius) throws ShapeException {
-        Validator.validatePositiveDouble(radius, "Invalid radius");
+    	setShapeType("Circle");
+    	Validator.validatePositiveDouble(radius, "Invalid radius");
         if (newCenter==null)
             throw new ShapeException("Invalid center point");
        
@@ -72,6 +74,19 @@ public class Circle extends ShapeComponent{
 	public void scale(double scaleFactor) throws ShapeException{
 		Validator.validatePositiveDouble(scaleFactor, "Invalid scale factor");
         radius *= scaleFactor;
+	}
+
+	@Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		return 
+		getShapeType() + "" 
+		+ Double.toString(newPoint.getX()) + " " 
+		+ Double.toString(newPoint.getY()) + " " 
+		+ Double.toString(radius)
+		+ "\n";
 	}
 
 }

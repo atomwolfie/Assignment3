@@ -24,7 +24,8 @@ public class Line extends ShapeComponent {
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public Line(double x1, double y1, double x2, double y2) throws ShapeException {
-        point1 = new Point(x1, y1);
+    	setShapeType("Line");
+    	point1 = new Point(x1, y1);
         point2 = new Point(x2, y2);
 
         if (computeLength() < 0.00000001)
@@ -38,7 +39,8 @@ public class Line extends ShapeComponent {
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public Line(Point point1, Point point2) throws ShapeException {
-        if (point1==null || point2==null)
+    	setShapeType("Line");
+    	if (point1==null || point2==null)
             throw new ShapeException("Invalid Point");
 
         this.point1 = point1;
@@ -91,8 +93,25 @@ public class Line extends ShapeComponent {
 	}
 
 	@Override
-	public void scale(double scaleFactor) throws ShapeException {
+	public void scale(double scaleFactor) throws ShapeException {		
+	}
+	
+	@Override
+	public String printAllparameters() {
 		
+		System.out.println(getShapeType() + " " 
+		+ Double.toString(point1.getX()) + " " 
+		+ Double.toString(point1.getY()) + " "
+		+ Double.toString(point2.getX()) + " "
+		+ Double.toString(point2.getY()) + " "
+		+ "\n");
 		
+		return 
+		getShapeType() + " " 
+		+ Double.toString(point1.getX()) + " " 
+		+ Double.toString(point1.getY()) + " "
+		+ Double.toString(point2.getX()) + " "
+		+ Double.toString(point2.getY()) + " "
+		+ "\n";
 	}
 }

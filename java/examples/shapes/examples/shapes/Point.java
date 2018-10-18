@@ -20,7 +20,8 @@ public class Point extends ShapeComponent{
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public Point(double x, double y) throws ShapeException {
-        Validator.validateDouble(x, "Invalid x-location");
+    	setShapeType("Point");
+    	Validator.validateDouble(x, "Invalid x-location");
         Validator.validateDouble(y, "Invalid y-location");
         this.x = x;
         this.y = y;
@@ -90,5 +91,20 @@ public class Point extends ShapeComponent{
 
 	@Override
 	public void scale(double scaleFactor) throws ShapeException {		
+	}
+	
+	@Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		System.out.println(getShapeType() + " " 
+		+ Double.toString(x) + " " 
+		+ Double.toString(y) + "\n");
+		
+		return 
+		getShapeType() + " " 
+		+ Double.toString(x) + " " 
+		+ Double.toString(y) + "\n";
 	}
 }

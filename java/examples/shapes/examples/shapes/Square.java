@@ -23,7 +23,8 @@ public class Square extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Square(double x, double y,  double sideLength) throws ShapeException {
-        Validator.validatePositiveDouble(sideLength, "Invalid side length");
+    	setShapeType("Square");
+    	Validator.validatePositiveDouble(sideLength, "Invalid side length");
         this.setCenter(x, y); 
         this.sideLength = sideLength;
     }
@@ -36,7 +37,8 @@ public class Square extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Square(Point center,  double sideLength) throws ShapeException {
-        Validator.validatePositiveDouble(sideLength, "Invalid side length");
+    	setShapeType("Square");
+    	Validator.validatePositiveDouble(sideLength, "Invalid side length");
        
         if (center==null)
             throw new ShapeException("Invalid center point");
@@ -70,8 +72,20 @@ public class Square extends ShapeComponent {
 	public double computeArea() {
 	//  Area of a square = sideLength^2  			
 		AreaCalculator areaHelper = new AreaCalculator();		
-		return areaHelper.computeArea(sideLength);
-		    	  	
+		return areaHelper.computeArea(sideLength);	    	  	
 	}
 
+	@Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		return 
+		getShapeType() + "" 
+		+ Double.toString(newPoint.getX()) + " " 
+		+ Double.toString(newPoint.getY()) + " "  
+		+ Double.toString(sideLength)
+		+ "\n";
+	}
+	
 }

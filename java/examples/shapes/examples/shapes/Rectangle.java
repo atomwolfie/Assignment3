@@ -24,6 +24,7 @@ public class Rectangle extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Rectangle(double x, double y,  double width, double height) throws ShapeException {
+    	setShapeType("Rectangle");
         Validator.validatePositiveDouble(width, "Invalid width");
         Validator.validatePositiveDouble(height, "Invalid height");
         this.setCenter(x, y);
@@ -40,7 +41,8 @@ public class Rectangle extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Rectangle(Point center,  double width, double height) throws ShapeException {
-        Validator.validatePositiveDouble(width, "Invalid width");
+    	setShapeType("Rectangle");
+    	Validator.validatePositiveDouble(width, "Invalid width");
         Validator.validatePositiveDouble(height, "Invalid height");
        
         if (center==null)
@@ -87,4 +89,17 @@ public class Rectangle extends ShapeComponent {
 		return areaHelper.computeArea(width, height);		
 	}
 
+	@Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		return 
+		getShapeType() + "" 
+		+ Double.toString(newPoint.getX()) + " " 
+		+ Double.toString(newPoint.getY()) + " " 
+		+ Double.toString(width) + " "
+		+ Double.toString(height)
+		+ "\n";
+	}
 }

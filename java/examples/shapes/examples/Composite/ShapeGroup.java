@@ -7,7 +7,7 @@ import examples.shapes.ShapeException;
 
 public class ShapeGroup extends ShapeComponent {
 
-	ArrayList<ShapeComponent> shapeComponents = new ArrayList<ShapeComponent>();
+	public ArrayList<ShapeComponent> shapeComponents = new ArrayList<ShapeComponent>();
 	
 	
 	String groupName;
@@ -70,6 +70,13 @@ public class ShapeGroup extends ShapeComponent {
 	public void move(double deltaX, double deltaY) throws ShapeException {
 		// does nothing here
 		
+	}
+
+	@Override
+	public String printAllparameters() {
+				
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

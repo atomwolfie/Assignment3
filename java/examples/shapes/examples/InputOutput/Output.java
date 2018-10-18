@@ -1,13 +1,35 @@
-package InputOutput;
+package examples.InputOutput;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class Output {
+import examples.Composite.ShapeComponent;
+import examples.Composite.ShapeGroup;
 
+public class Output {
 	
-	public void writeFile(OutputStream generalOutput) throws IOException{
+	
+	public void writeFile(ShapeGroup shapeGroup, String fileName) throws IOException{
+			
+		for(int i = 0; i < shapeGroup.shapeComponents.size(); i++){
+			
+			ShapeComponent shape = shapeGroup.getComponent(i);
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			writer.write(shape.printAllparameters());
+			writer.close();
+		}
+		
+	}
+	
+	
+	
+	
+	
+	public void writeFileTest(OutputStream generalOutput) throws IOException{
 				
 		OutputStream outPut = generalOutput;
 

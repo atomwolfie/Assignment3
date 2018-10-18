@@ -24,7 +24,8 @@ public class Ellipse extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Ellipse(double x, double y,  double width, double height) throws ShapeException {
-        Validator.validatePositiveDouble(width, "Invalid width");
+    	setShapeType("Ellipse");
+    	Validator.validatePositiveDouble(width, "Invalid width");
         Validator.validatePositiveDouble(height, "Invalid height");
        
         this.setCenter(x, y);
@@ -42,6 +43,7 @@ public class Ellipse extends ShapeComponent {
      * @throws ShapeException   The exception thrown if the x, y, or z are not valid
      */
     public Ellipse(Point center,  double width, double height) throws ShapeException {
+    	setShapeType("Ellipse");
         Validator.validatePositiveDouble(width, "Invalid width");
         Validator.validatePositiveDouble(height, "Invalid height");
        
@@ -93,5 +95,19 @@ public class Ellipse extends ShapeComponent {
     	AreaCalculator areaHelper = new AreaCalculator();
     	return areaHelper.computeEllipseArea(width, height);
     }
+    
+    @Override
+	public String printAllparameters() {
+					
+		Point newPoint = getCenter();
+		
+		return 
+		getShapeType() + "" 
+		+ Double.toString(newPoint.getX()) + " " 
+		+ Double.toString(newPoint.getY()) + " " 
+		+ Double.toString(width) + " "
+		+ Double.toString(height)
+		+ "\n";
+	}
 
 }

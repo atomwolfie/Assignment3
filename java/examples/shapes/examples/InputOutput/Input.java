@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import examples.Composite.ShapeGroup;
 import examples.Factory.ShapeFactory;
 import examples.Flyweight.EmbeddedFactory;
+import examples.shapes.ShapeException;
 
 public class Input {
 
@@ -41,13 +43,15 @@ public class Input {
 	
 	
 	@SuppressWarnings("resource")
-	public void readFile(String fileName) throws IOException{
+	public ShapeGroup readFile(String fileName) throws IOException, ShapeException{
 		
 		File file = new File(fileName);		
 		Scanner sc = new Scanner(file); 
 		char[] myChars = fileName.toCharArray();		
 		ShapeGroup shapeGroup = new ShapeGroup("Shape group", "Imported from file");
 
+		//array that will hold inputs eeded for shapes (ie coordinates, radius, etc)
+		ArrayList<Double> inputs = new ArrayList<Double>();
 		
 		if(myChars[myChars.length - 1] == 't'){
 			ShapeFactory shapeFactory = new ShapeFactory();
@@ -56,22 +60,25 @@ public class Input {
 			
 				//get inputs
 				String shapeType = sc.nextLine();
-				System.out.println(shapeType);
-				//shapeFactory.makeShape(sc.nextLine(), sc.next);			
-			
+				//double input1 = sc.nextDouble();
+				
+				String[] tokens = shapeType.split(" ");
+				
+				for(int i = 1; i < tokens.length; ++i){
+					System.out.println(tokens[i]);
+					inputs.add(Double.parseDouble(tokens[i]));
+				}				
+				shapeGroup.add(shapeFactory.makeShape(tokens[0], inputs));
 			}
 		}
 		
-		if(myChars[myChars.length - 1] == 'p'){
-			EmbeddedFactory embedFactory = new EmbeddedFactory();
-			
-		}
-	
-		  
-	    while (sc.hasNextLine()) 
-	      System.out.println(sc.nextLine());
 		
-	    //parse stuff out and use factory to create shapes and shape composites
-   
+		//create embadded image
+		if(myChars[myChars.length - 1] == 'p'){
+			EmbeddedFactory embedFactory = new EmbeddedFactory();			
+			shapeGroup.add(embedFactory.getImage(0, 0, fileName));
+		}
+		
+		return shapeGroup;
 }
 }

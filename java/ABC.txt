@@ -1,5 +1,2 @@
-Circle  0 0 5
-Ellipse 0 0 5 10
-Square 0 0 10
-Rectangle 0 0 5 10
+Line 0.0 0.0 10.0 10.0 
 

@@ -6,12 +6,20 @@ import examples.shapes.ShapeException;
 public abstract class ShapeComponent {
 
 	private Point center = null;
+	private String shapeType;
 	
+	
+	public void setShapeType(String newName){
+		shapeType = newName;
+	}
+	
+	public String getShapeType(){
+		return shapeType;
+	}
 	
 	public void setCenter(double x, double y) {	
 		center.setX(x);
-		center.setY(y);
-		
+		center.setY(y);	
 	}
 	
 	public void setCenter(Point newCenter){
@@ -57,7 +65,7 @@ public void displayShapeInfo() {
 
 public abstract double computeArea();
 
-
+public abstract String printAllparameters();
 
 
 public abstract void scale(double scaleFactor) throws ShapeException;

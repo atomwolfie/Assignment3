@@ -1,5 +1,7 @@
 package examples.Factory;
 
+import java.util.ArrayList;
+
 import examples.Composite.ShapeComponent;
 import examples.Composite.ShapeGroup;
 import examples.shapes.Circle;
@@ -12,25 +14,25 @@ import examples.shapes.Triangle;
 public class ShapeFactory {
 
 	
-	public ShapeComponent makeShape(String shapeType, int shapeInputs[]) throws ShapeException{
+	public ShapeComponent makeShape(String shapeType, ArrayList<Double> shapeInputs) throws ShapeException{
 				
 		if(shapeType.equals("Circle")){
-			return new Circle(shapeInputs[0],shapeInputs[1],shapeInputs[2]); 
+			return new Circle(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2)); 
 		}
 				
 		if(shapeType.equals("Ellipse")){
-			return new Ellipse(shapeInputs[0],shapeInputs[1],shapeInputs[2], shapeInputs[3]); 
+			return new Ellipse(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2), shapeInputs.get(3)); 
 		}
 		
 		if(shapeType.equals("Square")){
-			return new Square(shapeInputs[0],shapeInputs[1],shapeInputs[2]); 
+			return new Square(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2)); 
 		}
 		if(shapeType.equals("Rectangele")){
-			return new Rectangle(shapeInputs[0],shapeInputs[1],shapeInputs[2], shapeInputs[3]); 
+			return new Rectangle(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2), shapeInputs.get(3)); 
 		}
 		if(shapeType.equals("Triangle")){	
-			return new Triangle(shapeInputs[0],shapeInputs[1],shapeInputs[2], shapeInputs[3], 
-					shapeInputs[4], shapeInputs[5], shapeInputs[6], shapeInputs[7]); 
+			return new Triangle(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2), shapeInputs.get(3), 
+					shapeInputs.get(4), shapeInputs.get(5), shapeInputs.get(6), shapeInputs.get(7)); 
 		}
 			
 		return null;

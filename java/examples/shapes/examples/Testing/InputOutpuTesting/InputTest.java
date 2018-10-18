@@ -9,30 +9,30 @@ import java.io.InputStream;
 import org.junit.Test;
 
 import examples.InputOutput.Input;
+import examples.shapes.ShapeException;
 
 
 
 public class InputTest {
 
-//	   @Test
-//       public void testReadStream() throws IOException  {
-//           
-//		   String stringGivenByUser = "text";
-//		    InputStream targetStream = new ByteArrayInputStream(stringGivenByUser.getBytes());
-//		  		   
-//		   Input inputGuy = new Input();
-//		   inputGuy.readFile(targetStream);	   		
-//       }
-
 	   
 	   @Test
-       public void testRead() throws IOException  {
+       public void testReadTxt() throws IOException, ShapeException  {
            
 		   String stringGivenByUser = "ABC.txt";
 		    		  		   
 		   Input inputGuy = new Input();
-		   inputGuy.readFile(stringGivenByUser);	   		
-		   
+		   inputGuy.readFile(stringGivenByUser);	   				   
+		   //need asserts
+       }
+	   
+	   @Test
+       public void testReadBmp() throws IOException, ShapeException  {
+           
+		   String stringGivenByUser = "bitmap-image-icon.bmp";
+		    		  		   
+		   Input inputGuy = new Input();
+		   inputGuy.readFile(stringGivenByUser);	   				   
 		   //need asserts
        }
 

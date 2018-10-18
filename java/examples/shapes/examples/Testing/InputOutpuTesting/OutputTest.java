@@ -9,19 +9,28 @@ import java.io.OutputStream;
 import org.junit.Before;
 import org.junit.Test;
 
-import InputOutput.Output;
+import examples.Composite.ShapeGroup;
+import examples.InputOutput.Output;
+import examples.shapes.Line;
+import examples.shapes.Point;
+import examples.shapes.ShapeException;
 
 public class OutputTest {
 
 	 @Test
-     public void testRead() throws IOException  {
+     public void testWrite() throws IOException, ShapeException  {
          
-		   String stringGivenByUser = "text";
-		   OutputStream targetStream = new ByteArrayOutputStream(stringGivenByUser.getBytes());
-		  		   
-		   Output outputGuy = new Output();
-		   outputGuy.writeFile(targetStream);	   
+		   ShapeGroup shapeGroup = new ShapeGroup("Test group", "group for testing");
 		
+		   Point point = new Point(0,0);
+		   Line line = new Line(0,0,10,10);
+		   shapeGroup.add(point);
+		   shapeGroup.add(line);
+		   shapeGroup.add(line);
+		   
+		   Output outputGuy = new Output();
+		   
+		   outputGuy.writeFile(shapeGroup, "output.txt");	   
      }
 
 

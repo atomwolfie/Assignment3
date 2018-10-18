@@ -13,42 +13,62 @@ import examples.Composite.ShapeComponent;
 
 public class EmbeddedImage extends ShapeComponent{
 
+	//instrinsic: location(x,y)
 	
-	private int dimensionX,dimensionY, locationX, locationY;
+	//extrinsic stuff:
+	private int dimensionX,dimensionY;
+	
 	private String fileName;
+	
 
 	
 	
 	public EmbeddedImage(){
+		setShapeType("Embedded Image");
 		setX(1000);
 		setY(750);	
-		setLocationX(0);
-		setLocationY(0);
+		setCenter(0,0);
 	}
 	
 	
 	public EmbeddedImage(String newFile){
+		setShapeType("Embedded Image");
 		fileName = newFile;
 		setX(1000);
 		setY(750);	
-		setLocationX(0);
-		setLocationY(0);
+		setCenter(0,0);
 	}
 	
-	public EmbeddedImage(int x, int y, int xLocation, int yLocation){
+	
+	public EmbeddedImage(Double x, Double y){
+		setShapeType("Embedded Image");
+		setX(1000);
+		setY(750);	
+		setCenter(x,y);
+	}
+	
+	public EmbeddedImage(Double x, Double y, String newFile){
+		setShapeType("Embedded Image");
+		fileName = newFile;
+		setX(1000);
+		setY(750);	
+		setCenter(x,y);
+	}
+	
+	public EmbeddedImage(int xLocation, int yLocation, int x, int y){
+		setShapeType("Embedded Image");
 		setX(x);
 		setY(y);
-		setLocationX(xLocation);
-		setLocationY(yLocation);	
+		setCenter(xLocation,yLocation);	
 	}
 	
 	
-	public EmbeddedImage(String newFile,int x, int y, int xLocation, int yLocation){
+	public EmbeddedImage(int xLocation, int yLocation, int x, int y, String newFile){
+		setShapeType("Embedded Image");
 		fileName = newFile;
 		setX(x);
 		setY(y);
-		setLocationX(xLocation);
-		setLocationY(yLocation);	
+		setCenter(xLocation,yLocation);	
 	}
 	
 	public void showImage(){
@@ -98,22 +118,6 @@ public class EmbeddedImage extends ShapeComponent{
 		 dimensionY = y;
 	}
 	
-	public int getLocationX(){
-		return locationX;
-	}
-	
-	public int getLoationY(){
-		return locationY;
-	}
-	
-	public void setLocationX(int x){
-		locationX = x;
-	}
-	
-	public void setLocationY(int y){
-		locationY = y;
-	}
-	
 	
 	
 	
@@ -134,5 +138,20 @@ public class EmbeddedImage extends ShapeComponent{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	 @Override
+		public String printAllparameters() {
+						
+			Point newPoint = getCenter();
+			
+			return 
+			getShapeType() + ""
+			+ Double.toString(newPoint.getX()) + " " 
+			+ Double.toString(newPoint.getY()) + " " 
+			+ Double.toString(dimensionX) + " "
+			+ Double.toString(dimensionY)
+			+ fileName
+			+ "\n";
+		}
 	
 }
