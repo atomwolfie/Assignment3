@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import examples.Composite.ShapeComponent;
 import examples.Composite.ShapeGroup;
+import examples.Flyweight.EmbeddedFactory;
 import examples.shapes.Circle;
 import examples.shapes.Ellipse;
 import examples.shapes.Rectangle;
@@ -34,7 +35,10 @@ public class ShapeFactory {
 			return new Triangle(shapeInputs.get(0),shapeInputs.get(1),shapeInputs.get(2), shapeInputs.get(3), 
 					shapeInputs.get(4), shapeInputs.get(5), shapeInputs.get(6), shapeInputs.get(7)); 
 		}
-			
+		if(shapeType.equals("EmbeddedImage")){	
+			EmbeddedFactory embedFactory = new EmbeddedFactory();
+			return embedFactory.getImage(0, 0, Double.toString(shapeInputs.get(4)));
+		}	
 		return null;
 			
 	}
