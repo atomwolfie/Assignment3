@@ -14,14 +14,25 @@ public class Output {
 	
 	public void writeFile(ShapeGroup shapeGroup, String fileName) throws IOException{
 			
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+		
+		String string = "";
+		
 		for(int i = 0; i < shapeGroup.shapeComponents.size(); i++){
 			
 			ShapeComponent shape = shapeGroup.getComponent(i);
+
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-			writer.write(shape.printAllparameters());
-			writer.close();
+			string = string + shape.getParametersInString();
+			
+			System.out.println("Adding new shape to output.txt");
+			System.out.println(shapeGroup.shapeComponents.get(i).getParametersInString());
+			
 		}
+		
+		writer.write(string);
+		writer.close();
 		
 	}
 	

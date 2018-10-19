@@ -1,9 +1,8 @@
-package Testing;
+package examples.Testing;
 
 import static org.junit.Assert.*;
 
 import examples.shapes.Point;
-import examples.shapes.Shape;
 import examples.shapes.ShapeException;
 
 import examples.shapes.Line;
@@ -13,33 +12,30 @@ import org.junit.Test;
 
 public class LineTest {
 
-    @Test
+    @SuppressWarnings("deprecation")
+	@Test
     public void testValidConstruction() throws Exception {
        
-    	Point point1 = new Point(1,1);
-    	Point point2 = new Point(3,3);
+    	Point point1 = new Point(1.0,1.0);
+    	Point point2 = new Point(3.0,3.0);
     	
-    	//public Line(Point point1, Point point2)
-    	Line myLine = new Line(point1, point2);
-    	assertSame(point1, myLine.getPoint1());
-    	assertSame(point2, myLine.getPoint2());
+    	
 
         
         //Line(double x1, double y1, double x2, double y2)
-        Line myLine1 = new Line(1,1,3,3);
-        assertSame(point1, myLine.getPoint1());
-    	assertSame(point2, myLine.getPoint2());
+        Line myLine = new Line(1.0,1.0,3.0,3.0);
+       
+        assertEquals(point1.getX(), myLine.getX1());
+        assertEquals(point1.getY(), myLine.getX2());
+        assertEquals(point2.getX(), myLine.getY1());
+        assertEquals(point2.getY(), myLine.getY2());
+        
     }
 
     @Test
     public void testInvalidConstruction() {
 
-        try {
-            new Line(null, null);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
+    
 
         try {
             new Line(Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY);
@@ -138,34 +134,43 @@ public class LineTest {
         //Like the triangle test, not sure how deep I'm supposed to go here       
 }
 
-    @Test
+    @SuppressWarnings("deprecation")
+	@Test
     public void testMove() throws ShapeException {
     	Line myLine = new Line(1,1,3,3);
     	Point point1 = new Point(1,1);
     	Point point2 = new Point(3,3);   	
-    	assertEquals(point1, myLine.getPoint1());
-    	assertSame(point2, myLine.getPoint2());
+    	assertEquals(point1.getX(), myLine.getX1());
+    	assertEquals(point1.getY(), myLine.getX2());
+    	assertEquals(point2.getX(), myLine.getY1());
+    	assertEquals(point2.getY(), myLine.getY2());
     	
     	myLine.move(2, 2);
     	Point point3 = new Point(3,3);
     	Point point4 = new Point(5,5);
-    	assertEquals(point3, myLine.getPoint1());
-    	assertSame(point4, myLine.getPoint2());
+    	assertEquals(point3.getX(), myLine.getX1());
+    	assertEquals(point3.getY(), myLine.getX2());
+    	assertEquals(point4.getX(), myLine.getY1());
+    	assertEquals(point4.getY(), myLine.getY2());
     	
     	   	
     	Line myLine1 = new Line(1,1,3,3);
     	Point point5 = new Point(3,-1);
     	Point point6 = new Point(5,1);
     	myLine1.move(2, -2);
-    	assertEquals(point5, myLine.getPoint1());
-    	assertSame(point6, myLine.getPoint2());
+    	assertEquals(point5.getX(), myLine.getX1());
+    	assertEquals(point5.getY(), myLine.getX2());
+    	assertEquals(point6.getX(), myLine.getY1());
+    	assertEquals(point6.getY(), myLine.getY2());
     	
     	Line myLine2 = new Line(1,1,3,3);
     	Point point7 = new Point(1,3);
     	Point point8 = new Point(3,7);
     	myLine2.move(-2, 2);
-    	assertEquals(point7, myLine.getPoint1());
-    	assertSame(point8, myLine.getPoint2());  
+    	assertEquals(point7.getX(), myLine.getX1());
+    	assertEquals(point7.getY(), myLine.getX2());
+    	assertEquals(point8.getX(), myLine.getY1());
+    	assertEquals(point8.getY(), myLine.getY2()); 
     	
     	try {
     		myLine.move(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
@@ -244,9 +249,7 @@ public class LineTest {
     	assertEquals(0.7932, myLine1.computeSlope(), 0.0001);
     	
     	Line myLine2 = new Line(-1,-1,3,3);
-    	assertEquals(1, myLine2.computeSlope(), 0.0001);
-    	
-    
+    	assertEquals(1, myLine2.computeSlope(), 0.0001);  
     }
     
 }

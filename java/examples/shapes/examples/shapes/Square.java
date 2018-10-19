@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.util.ArrayList;
+
 import examples.Composite.ShapeComponent;
 import examples.Internal.AreaCalculator;
 
@@ -11,7 +13,7 @@ import examples.Internal.AreaCalculator;
  */
 @SuppressWarnings("WeakerAccess")
 public class Square extends ShapeComponent {
-    private double sideLength;
+    private double x, y, sideLength;
     
 
     /**
@@ -25,31 +27,26 @@ public class Square extends ShapeComponent {
     public Square(double x, double y,  double sideLength) throws ShapeException {
     	setShapeType("Square");
     	Validator.validatePositiveDouble(sideLength, "Invalid side length");
-        this.setCenter(x, y); 
+        this.x = x;
+        this.y = y;
         this.sideLength = sideLength;
     }
 
+   
     /**
-     * Constructor with a Point for center
-     *
-     * @param center            The x-location of the center of the square -- must be a valid point
-     * @param side length            The side length of the square -- must be greater or equal to zero.
-     * @throws ShapeException   The exception thrown if the x, y, or z are not valid
+     * @return  The x-location of the point
      */
-    public Square(Point center,  double sideLength) throws ShapeException {
-    	setShapeType("Square");
-    	Validator.validatePositiveDouble(sideLength, "Invalid side length");
-       
-        if (center==null)
-            throw new ShapeException("Invalid center point");
+    public double getX() { return x; }
 
-        this.setCenter(center); 
-        this.sideLength = sideLength;
-        
-    }
-
+    public void setX(double x) { this.x = x;}
     
-
+    /**
+     * @return  The y-location of the point
+     */
+    public double getY() { return y; }
+    
+    public void setY(double y) { this.y = y;}
+    
     /**
      * @return  The side length of the square
      */
@@ -59,7 +56,8 @@ public class Square extends ShapeComponent {
     
     @Override
     public void move(double deltaX, double deltaY) throws ShapeException {
-    	this.move(deltaX, deltaY);
+    	this.x = deltaX;
+    	this.y = deltaY;
     }
 
     @Override
@@ -76,16 +74,27 @@ public class Square extends ShapeComponent {
 	}
 
 	@Override
-	public String printAllparameters() {
-					
-		Point newPoint = getCenter();
-		
+	public String getParametersInString() {
+							
 		return 
-		getShapeType() + "" 
-		+ Double.toString(newPoint.getX()) + " " 
-		+ Double.toString(newPoint.getY()) + " "  
+		getShapeType() + " " 
+		+ Double.toString(x) + " " 
+		+ Double.toString(y) + " "  
 		+ Double.toString(sideLength)
 		+ "\n";
+	}
+
+	@Override
+	public ArrayList<Double> getAllparameters() {
+		// TODO Auto-generated method stub
+		ArrayList<Double> parameters = new ArrayList();
+		
+		parameters.add(x);
+		parameters.add(y);
+		parameters.add(sideLength);
+		parameters.add(sideLength);
+		
+		return parameters;
 	}
 	
 }

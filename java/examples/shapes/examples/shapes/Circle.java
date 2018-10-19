@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.util.ArrayList;
+
 import examples.Composite.ShapeComponent;
 import examples.Internal.AreaCalculator;
 
@@ -12,7 +14,7 @@ import examples.Internal.AreaCalculator;
 public class Circle extends ShapeComponent{
     
 	
-    private double radius;
+    private double x, y, radius;
 
     /**
      * Constructor with x-y Location for center
@@ -25,30 +27,27 @@ public class Circle extends ShapeComponent{
     public Circle(double x, double y, double newRadius) throws ShapeException {
     	setShapeType("Circle");
     	Validator.validatePositiveDouble(radius, "Invalid radius");
-        setCenter(x, y);       
-        radius = newRadius;        
-    }
-
-    /**
-     * Constructor with a Point for center
-     *
-     * @param center            The x-location of the center of the circle -- must be a valid point
-     * @param radius            The radius of the circle -- must be greater or equal to zero.
-     * @throws ShapeException   The exception thrown if the x, y, or z are not valid
-     */
-    public Circle(Point newCenter, double newRadius) throws ShapeException {
-    	setShapeType("Circle");
-    	Validator.validatePositiveDouble(radius, "Invalid radius");
-        if (newCenter==null)
-            throw new ShapeException("Invalid center point");
-       
-        setCenter(newCenter); 
-                   
-        radius = newRadius;
+    	Validator.validateDouble(x, "Invalid x-location");
+        Validator.validateDouble(y, "Invalid y-location");
+        this.x = x;
+        this.y = y;      
+        this.radius = newRadius;        
     }
 
  
-  
+    /**
+     * @return  The x-location of the point
+     */
+    public double getX() { return x; }
+
+    public void setX(double x) { this.x = x;}
+    
+    /**
+     * @return  The y-location of the point
+     */
+    public double getY() { return y; }
+    
+    public void setY(double y) { this.y = y;}
 
     /**
      * @return  The radius of the circle
@@ -59,7 +58,8 @@ public class Circle extends ShapeComponent{
      
     @Override
     public void move(double deltaX, double deltaY) throws ShapeException {
-        this.move(deltaX, deltaY);
+        this.x = deltaX;
+        this.y = deltaY;
     }
 
 
@@ -77,16 +77,30 @@ public class Circle extends ShapeComponent{
 	}
 
 	@Override
-	public String printAllparameters() {
-					
-		Point newPoint = getCenter();
-		
+	public String getParametersInString() {
+						
 		return 
 		getShapeType() + "" 
-		+ Double.toString(newPoint.getX()) + " " 
-		+ Double.toString(newPoint.getY()) + " " 
+		+ Double.toString(x) + " " 
+		+ Double.toString(y) + " " 
 		+ Double.toString(radius)
 		+ "\n";
 	}
+	
+	@Override
+	public ArrayList<Double> getAllparameters() {
+		
+		ArrayList<Double> parameters = new ArrayList();
+				
+		parameters.add(x);
+		parameters.add(y);
+		parameters.add(radius * 2);
+		parameters.add(radius * 2);
+		
+		return parameters;
+	}
+
+
+	
 
 }

@@ -3,6 +3,7 @@ package examples.shapes;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -16,60 +17,69 @@ public class EmbeddedImage extends ShapeComponent{
 	//instrinsic: location(x,y)
 	
 	//extrinsic stuff:
-	private int dimensionX,dimensionY;
+	private double x, y, dimensionX, dimensionY;
 	
 	private String fileName;
 	
 
 	
 	
-	public EmbeddedImage(){
-		setShapeType("Embedded Image");
-		setX(1000);
-		setY(750);	
-		setCenter(0,0);
+	public EmbeddedImage() throws ShapeException{
+		setShapeType("EmbeddedImage");
+		setDimensionX(1000);
+		setDimensionY(750);	
+		this.x = 0;
+		this.y = 0;
 	}
 	
 	
-	public EmbeddedImage(String newFile){
-		setShapeType("Embedded Image");
+	public EmbeddedImage(String newFile) throws ShapeException{
+		setShapeType("EmbeddedImage");
 		fileName = newFile;
-		setX(1000);
-		setY(750);	
-		setCenter(0,0);
+		setDimensionX(1000);
+		setDimensionY(750);	
+		this.x = 0;
+		this.y = 0;
 	}
 	
 	
-	public EmbeddedImage(Double x, Double y){
-		setShapeType("Embedded Image");
-		setX(1000);
-		setY(750);	
-		setCenter(x,y);
+	public EmbeddedImage(Double x, Double y) throws ShapeException{
+		setShapeType("EmbeddedImage");
+		setDimensionX(1000);
+		setDimensionY(750);	
+		this.x = x;
+		this.y = y;
 	}
 	
-	public EmbeddedImage(Double x, Double y, String newFile){
-		setShapeType("Embedded Image");
+	public EmbeddedImage(Double x, Double y, String newFile) throws ShapeException{
+		setShapeType("EmbeddedImage");
 		fileName = newFile;
-		setX(1000);
-		setY(750);	
-		setCenter(x,y);
+		setDimensionX(1000);
+		setDimensionY(750);	
+		this.x = x;
+		this.y = y;
 	}
 	
-	public EmbeddedImage(int xLocation, int yLocation, int x, int y){
-		setShapeType("Embedded Image");
-		setX(x);
-		setY(y);
-		setCenter(xLocation,yLocation);	
+	public EmbeddedImage(double xLocation, double yLocation, double xDimension, double yDimension) throws ShapeException{
+		setShapeType("EmbeddedImage");
+		setDimensionX(xDimension);
+		setDimensionY(yDimension);
+		this.x = xLocation;
+		this.y = yLocation;
 	}
 	
 	
-	public EmbeddedImage(int xLocation, int yLocation, int x, int y, String newFile){
-		setShapeType("Embedded Image");
-		fileName = newFile;
-		setX(x);
-		setY(y);
-		setCenter(xLocation,yLocation);	
+	public EmbeddedImage(double xLocation, double yLocation, double xDimension, double yDimension, String newFile) throws ShapeException{
+		setShapeType("EmbeddedImage");
+		setFileName(newFile);
+		setDimensionX(xDimension);
+		setDimensionY(yDimension);
+		this.x = xLocation;
+		this.y = yLocation;	
 	}
+	
+	
+	
 	
 	public void showImage(){
 		try {
@@ -81,7 +91,7 @@ public class EmbeddedImage extends ShapeComponent{
             frame.add(imageLabel);
             frame.setLayout(null);
             imageLabel.setLocation(0, 0);
-            imageLabel.setSize(dimensionX, dimensionY);
+            imageLabel.setSize((int)dimensionX, (int)dimensionY);
             imageLabel.setVisible(true);
             frame.setVisible(true);
             //frame.setSize(1000, 750);
@@ -93,28 +103,43 @@ public class EmbeddedImage extends ShapeComponent{
         }
 	}
 
-	public String getFilename(){
+	/**
+     * @return  The x-location of the point
+     */
+    public double getX() { return x; }
+
+    public void setX(double x) { this.x = x;}
+    
+    /**
+     * @return  The y-location of the point
+     */
+    public double getY() { return y; }
+    
+    public void setY(double y) { this.y = y;}
+
+	
+	public String getFileName(){
 		return fileName;
 	}
 	
-	public void setFilename(String newName){
+	public void setFileName(String newName){
 		fileName = newName;
 	}
 	
 	
-	public int getX(){
+	public double getDimensionX(){
 		return dimensionX;
 	}
 	
-	public int getY(){
+	public double getDimensionY(){
 		return dimensionY;
 	}
 	
-	public void setX(int x){
+	public void setDimensionX(double x){
 		 dimensionX = x;
 	}
 	
-	public void setY(int y){
+	public void setDimensionY(double y){
 		 dimensionY = y;
 	}
 	
@@ -123,35 +148,48 @@ public class EmbeddedImage extends ShapeComponent{
 	
 	@Override
 	public double computeArea() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void scale(double scaleFactor) throws ShapeException {
-		// TODO Auto-generated method stub
-		
+		dimensionX = dimensionX * scaleFactor;
+		dimensionY = dimensionY * scaleFactor;
 	}
 
 	@Override
 	public void move(double deltaX, double deltaY) throws ShapeException {
-		// TODO Auto-generated method stub
-		
+		this.x = deltaX;
+        this.y = deltaY;	
 	}
 	
 	 @Override
-		public String printAllparameters() {
-						
-			Point newPoint = getCenter();
-			
+		public String getParametersInString() {
+									
 			return 
-			getShapeType() + ""
-			+ Double.toString(newPoint.getX()) + " " 
-			+ Double.toString(newPoint.getY()) + " " 
+			getShapeType() + " "
+			+ Double.toString(x) + " " 
+			+ Double.toString(y) + " " 
 			+ Double.toString(dimensionX) + " "
-			+ Double.toString(dimensionY)
+			+ Double.toString(dimensionY) + " "
 			+ fileName
 			+ "\n";
 		}
-	
+
+
+	@Override
+	public ArrayList<Double> getAllparameters() {
+		
+		ArrayList<Double> parameters = new ArrayList();
+				
+		
+		parameters.add(x);
+		parameters.add(y);
+		parameters.add(dimensionX);
+		parameters.add(dimensionY);
+		parameters.add(Double.valueOf(fileName));
+		
+		
+		return parameters;
+	}
 }

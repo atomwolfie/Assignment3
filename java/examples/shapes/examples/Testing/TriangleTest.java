@@ -14,24 +14,10 @@ public class TriangleTest {
     @Test
     public void testValidConstruction() throws Exception {
        
-    	Point center = new Point(1,2);
-        
-    	//Triangle(Point center, double t1, double t2, double l1, double l2, double r1, double r2)
-    	Triangle myTriangle = new Triangle(center, 10, 15, 5, 5, 15, 5);
-        assertSame(center, myTriangle.getCenter());        
-//        assertEquals(5, myTriangle.getWidth(),0);
-//        assertEquals(10, myTriangle.getHeight(), 0);
-        assertEquals(10, myTriangle.getT1(), 0);
-        assertEquals(15, myTriangle.getT2(), 0);
-        assertEquals(5, myTriangle.getL1(), 0);
-        assertEquals(5, myTriangle.getL2(), 0);
-        assertEquals(15, myTriangle.getR1(), 0);
-        assertEquals(5, myTriangle.getR2(), 0);
-        
-      //Triangle(double x, double y, double t1, double t2, double l1, double l2, double r1, double r2)
+    	   //Triangle(double x, double y, double t1, double t2, double l1, double l2, double r1, double r2)
         Triangle myTriangle1 = new Triangle(1.3, 2.6, 10, 15, 5, 5, 15, 5);
-        assertEquals(1.3, myTriangle1.getCenter().getX(), 0);
-        assertEquals(2.6, myTriangle1.getCenter().getY(), 0);
+        assertEquals(1.3, myTriangle1.getX(), 0);
+        assertEquals(2.6, myTriangle1.getY(), 0);
         assertEquals(10, myTriangle1.getT1(), 0);
         assertEquals(15, myTriangle1.getT2(), 0);
         assertEquals(5, myTriangle1.getL1(), 0);
@@ -46,58 +32,50 @@ public class TriangleTest {
     @Test
     public void testInvalidConstruction() {
     	
-
-        try {
-            new Triangle(null, 10, 15, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-    	
         
         try {
-            new Triangle(new Point(1, 2), Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
+            new Triangle(1,2, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         
         try {
-            new Triangle(new Point(1, 2), Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
+            new Triangle(1,2, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN);
+            new Triangle(1,2, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN, Double.NaN);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
              
         try {
-            new Triangle( new Point(1, 2), Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle( 1,2, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
 
         try {
-            new Triangle(new Point(1, 2), Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle(1,2, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
     	
         try {
-            new Triangle( new Point(1, 2), Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle(1,2, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
 
         try {
-            new Triangle(new Point(1, 2), Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle(1,2, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
@@ -106,135 +84,135 @@ public class TriangleTest {
               
         
         try {
-            new Triangle(new Point(1, 2), Double.NaN, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle(1,2, Double.NaN, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), Double.NEGATIVE_INFINITY, Double.NaN, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        
-        try {
-            new Triangle(new Point(1, 2), Double.NaN, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), Double.POSITIVE_INFINITY, Double.NaN, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), Double.POSITIVE_INFINITY, 15, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), 10, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), 10, 15, Double.POSITIVE_INFINITY, 5, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), 10, 15, 5, Double.POSITIVE_INFINITY, 15, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, Double.POSITIVE_INFINITY, 5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-        try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, 15, Double.POSITIVE_INFINITY);
+            new Triangle(1,2, Double.NEGATIVE_INFINITY, Double.NaN, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         
         try {
-            new Triangle(new Point(1, 2), Double.NEGATIVE_INFINITY, 15, 5, 5, 15, 5);
+            new Triangle(1,2, Double.NaN, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
+            new Triangle(1,2, Double.POSITIVE_INFINITY, Double.NaN, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, Double.NEGATIVE_INFINITY, 5, 15, 5);
+            new Triangle(1,2, Double.POSITIVE_INFINITY, 15, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, Double.NEGATIVE_INFINITY, 15, 5);
+            new Triangle(1,2, 10, Double.POSITIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, Double.NEGATIVE_INFINITY, 5);
+            new Triangle(1,2, 10, 15, Double.POSITIVE_INFINITY, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, 15, Double.NEGATIVE_INFINITY);
+            new Triangle(1,2, 10, 15, 5, Double.POSITIVE_INFINITY, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), Double.NaN, 15, 5, 5, 15, 5);
+            new Triangle(1,2, 10, 15, 5, 5, Double.POSITIVE_INFINITY, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, Double.NaN, 5, 5, 15, 5);
+            new Triangle(1,2, 10, 15, 5, 5, 15, Double.POSITIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        
+        try {
+            new Triangle(1,2, Double.NEGATIVE_INFINITY, 15, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, Double.NaN, 5, 15, 5);
+            new Triangle(1,2, 10, Double.NEGATIVE_INFINITY, 5, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, Double.NaN, 15, 5);
+            new Triangle(1,2, 10, 15, Double.NEGATIVE_INFINITY, 5, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, Double.NaN, 5);
+            new Triangle(1,2, 10, 15, 5, Double.NEGATIVE_INFINITY, 15, 5);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
         }
         try {
-            new Triangle(new Point(1, 2), 10, 15, 5, 5, 15, Double.NaN);
+            new Triangle(1,2, 10, 15, 5, 5, Double.NEGATIVE_INFINITY, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, 15, 5, 5, 15, Double.NEGATIVE_INFINITY);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, Double.NaN, 15, 5, 5, 15, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, Double.NaN, 5, 5, 15, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, 15, Double.NaN, 5, 15, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, 15, 5, Double.NaN, 15, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, 15, 5, 5, Double.NaN, 5);
+            fail("Expected exception not thrown");
+        } catch (Exception e) {
+            // ignore
+        }
+        try {
+            new Triangle(1,2, 10, 15, 5, 5, 15, Double.NaN);
             fail("Expected exception not thrown");
         } catch (Exception e) {
             // ignore
@@ -249,32 +227,32 @@ public class TriangleTest {
         @Test
         public void testMove() throws ShapeException {
         	Triangle myTriangle = new Triangle(1, 2, 10, 15, 5, 5, 15, 5);
-            assertEquals(1, myTriangle.getCenter().getX(), 0);
-            assertEquals(2, myTriangle.getCenter().getY(), 0);
+            assertEquals(1, myTriangle.getX(), 0);
+            assertEquals(2, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
             assertEquals(10, myTriangle.computeHeight(), 0);
 
             myTriangle.move(3,  4);
-            assertEquals(4, myTriangle.getCenter().getX(), 0);
-            assertEquals(6, myTriangle.getCenter().getY(), 0);
+            assertEquals(4, myTriangle.getX(), 0);
+            assertEquals(6, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
             assertEquals(10, myTriangle.computeHeight(), 0);
 
             myTriangle.move(0.123,  0.456);
-            assertEquals(4.123, myTriangle.getCenter().getX(), 0);
-            assertEquals(6.456, myTriangle.getCenter().getY(), 0);
+            assertEquals(4.123, myTriangle.getX(), 0);
+            assertEquals(6.456, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
             assertEquals(10, myTriangle.computeHeight(), 0);
 
             myTriangle.move(-0.123,  -0.456);
-            assertEquals(4, myTriangle.getCenter().getX(), 0);
-            assertEquals(6, myTriangle.getCenter().getY(), 0);
+            assertEquals(4, myTriangle.getX(), 0);
+            assertEquals(6, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
             assertEquals(10, myTriangle.computeHeight(), 0);
             
             myTriangle.move(-12,  -26);
-            assertEquals(-8, myTriangle.getCenter().getX(), 0);
-            assertEquals(-20, myTriangle.getCenter().getY(), 0);
+            assertEquals(-8, myTriangle.getX(), 0);
+            assertEquals(-20, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
             assertEquals(10, myTriangle.computeHeight(), 0);
 
@@ -326,20 +304,20 @@ public class TriangleTest {
         @Test
         public void testScale() throws ShapeException {
             Triangle myTriangle = new Triangle(1, 2, 10, 15, 5, 5, 15, 5);
-            assertEquals(1, myTriangle.getCenter().getX(), 0);
-            assertEquals(2, myTriangle.getCenter().getY(), 0);
+            assertEquals(1, myTriangle.getX(), 0);
+            assertEquals(2, myTriangle.getY(), 0);
             assertEquals(10, myTriangle.computeBaseLength(), 0);
 
             myTriangle.scale(3);
-            assertEquals(1, myTriangle.getCenter().getX(), 0);
-            assertEquals(225, myTriangle.getCenter().getY(), 0);
+            assertEquals(1, myTriangle.getX(), 0);
+            assertEquals(225, myTriangle.getY(), 0);
             assertEquals(30, myTriangle.computeBaseLength(), 0);
             
 
             
             myTriangle.scale(0.2);
-            assertEquals(1, myTriangle.getCenter().getX(), 0);
-            assertEquals(2, myTriangle.getCenter().getY(), 0);
+            assertEquals(1, myTriangle.getX(), 0);
+            assertEquals(2, myTriangle.getY(), 0);
             assertEquals(2, myTriangle.computeBaseLength(), 0);
             
             

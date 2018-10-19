@@ -1,11 +1,14 @@
 package examples.Composite;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+
 import examples.shapes.Point;
 import examples.shapes.ShapeException;
+import examples.shapes.Validator;
 
 public abstract class ShapeComponent {
 
-	private Point center = null;
 	private String shapeType;
 	
 	
@@ -17,25 +20,9 @@ public abstract class ShapeComponent {
 		return shapeType;
 	}
 	
-	public void setCenter(double x, double y) {	
-		center.setX(x);
-		center.setY(y);	
-	}
 	
-	public void setCenter(Point newCenter){
-		if(newCenter.equals(null)){
-			center.setX(0);
-			center.setY(0);
-		}
-		else{
-		center.setX(newCenter.getX());
-		center.setY(newCenter.getY());
-		}
-	}
 	
-	public Point getCenter(){
-		return center;
-	}
+	
 	
 	public void add(ShapeComponent newShapeComponent){
 		
@@ -65,11 +52,12 @@ public void displayShapeInfo() {
 
 public abstract double computeArea();
 
-public abstract String printAllparameters();
-
+public abstract String getParametersInString();
+public abstract ArrayList<Double> getAllparameters();
 
 public abstract void scale(double scaleFactor) throws ShapeException;
 
 public abstract void move(double deltaX, double deltaY) throws ShapeException;
+
 	
 }

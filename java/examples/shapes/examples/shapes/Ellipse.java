@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.util.ArrayList;
+
 import examples.Composite.ShapeComponent;
 import examples.Internal.AreaCalculator;
 
@@ -11,8 +13,8 @@ import examples.Internal.AreaCalculator;
  */
 @SuppressWarnings("WeakerAccess")
 public class Ellipse extends ShapeComponent {
-    private double width;
-    private double height;
+    private double x, y, width, height;
+    
 
     /**
      * Constructor with x-y Location for center
@@ -28,36 +30,24 @@ public class Ellipse extends ShapeComponent {
     	Validator.validatePositiveDouble(width, "Invalid width");
         Validator.validatePositiveDouble(height, "Invalid height");
        
-        this.setCenter(x, y);
-        
+        this.x = x;
+        this.y = y;
         this.width = width;
         this.height = height;
     }
-
+  
     /**
-     * Constructor with a Point for center
-     *
-     * @param center            The x-location of the center of the ellipse -- must be a valid point
-     * @param width            The width of the ellipse -- must be greater or equal to zero.
-     * @param height            The height of the ellipse -- must be greater or equal to zero.
-     * @throws ShapeException   The exception thrown if the x, y, or z are not valid
+     * @return  The x-location of the point
      */
-    public Ellipse(Point center,  double width, double height) throws ShapeException {
-    	setShapeType("Ellipse");
-        Validator.validatePositiveDouble(width, "Invalid width");
-        Validator.validatePositiveDouble(height, "Invalid height");
-       
-        if (center==null)
-            throw new ShapeException("Invalid center point");
+    public double getX() { return x; }
 
-        this.setCenter(center);
-        
-        this.width = width;
-        this.height = height;
-    }
-
+    public void setX(double x) { this.x = x;}
     
-
+    /**
+     * @return  The y-location of the point
+     */
+    public double getY() { return y; }
+  
     /**
      * @return  The width of the ellipse
      */
@@ -76,7 +66,8 @@ public class Ellipse extends ShapeComponent {
 
     @Override
     public void move(double deltaX, double deltaY) throws ShapeException {
-    	this.move(deltaX, deltaY);
+    	this.x = deltaX;
+        this.y = deltaY;
     }
     
     @Override
@@ -97,17 +88,28 @@ public class Ellipse extends ShapeComponent {
     }
     
     @Override
-	public String printAllparameters() {
-					
-		Point newPoint = getCenter();
-		
+	public String getParametersInString() {
+						
 		return 
-		getShapeType() + "" 
-		+ Double.toString(newPoint.getX()) + " " 
-		+ Double.toString(newPoint.getY()) + " " 
+		getShapeType() + " " 
+		+ Double.toString(x) + " " 
+		+ Double.toString(y) + " " 
 		+ Double.toString(width) + " "
 		+ Double.toString(height)
 		+ "\n";
+	}
+    
+    @Override
+	public ArrayList<Double> getAllparameters() {
+		
+		ArrayList<Double> parameters = new ArrayList();
+		
+		parameters.add(x);
+		parameters.add(y);
+		parameters.add(width);
+		parameters.add(height);
+		
+		return parameters;
 	}
 
 }

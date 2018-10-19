@@ -11,9 +11,12 @@ import org.junit.Test;
 
 import examples.Composite.ShapeGroup;
 import examples.InputOutput.Output;
+import examples.shapes.Ellipse;
+import examples.shapes.EmbeddedImage;
 import examples.shapes.Line;
 import examples.shapes.Point;
 import examples.shapes.ShapeException;
+import examples.shapes.Square;
 
 public class OutputTest {
 
@@ -24,9 +27,16 @@ public class OutputTest {
 		
 		   Point point = new Point(0,0);
 		   Line line = new Line(0,0,10,10);
+		   Square square = new Square(0,0,10);
+		   Ellipse ellipse = new Ellipse(0,0,10,10);
+		   EmbeddedImage image = new EmbeddedImage(0,0,700,700, "bitmap-image-icon.bmp");
+		   
 		   shapeGroup.add(point);
 		   shapeGroup.add(line);
 		   shapeGroup.add(line);
+		   shapeGroup.add(square);
+		   shapeGroup.add(ellipse);
+		   shapeGroup.add(image);
 		   
 		   Output outputGuy = new Output();
 		   

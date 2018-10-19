@@ -1,5 +1,7 @@
 package examples.shapes;
 
+import java.util.ArrayList;
+
 import examples.Composite.ShapeComponent;
 
 /**
@@ -12,8 +14,9 @@ import examples.Composite.ShapeComponent;
 @SuppressWarnings("WeakerAccess")
 public class Line extends ShapeComponent {
 
-    private Point point1;
-    private Point point2;
+   
+    
+    private double x1,x2, y1,y2;
 
     /**
      * Constructor based on x-y Locations
@@ -25,41 +28,46 @@ public class Line extends ShapeComponent {
      */
     public Line(double x1, double y1, double x2, double y2) throws ShapeException {
     	setShapeType("Line");
-    	point1 = new Point(x1, y1);
-        point2 = new Point(x2, y2);
+    	this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
 
-        if (computeLength() < 0.00000001)
-            throw new ShapeException("A line must have a length > 0");
+//        if (computeLength() < 0.00000001)
+//            throw new ShapeException("A line must have a length > 0");
     }
 
+   
+    
     /**
-     *
-     * @param point1            The first point -- must not be null
-     * @param point2            The second point -- must not b e null
-     * @throws ShapeException   Exception throw if any parameter is invalid
+     * @return  The x-location of the point
      */
-    public Line(Point point1, Point point2) throws ShapeException {
-    	setShapeType("Line");
-    	if (point1==null || point2==null)
-            throw new ShapeException("Invalid Point");
+    public double getX1() { return x1; }
 
-        this.point1 = point1;
-        this.point2 = point2;
-
-        if (computeLength() < 0.00000001)
-            throw new ShapeException("A line must have a length > 0");
-    }
-
+    public void setX1(double x1) { this.x1 = x1;}
+    
     /**
-     * @return  The first point
+     * @return  The y-location of the point
      */
-    public Point getPoint1() { return point1; }
-
+    public double getY1() { return y1; }
+    
+    public void setY1(double y1) { this.y1 = y1;}
+    
     /**
-     * @return  The second point
+     * @return  The x-location of the point
      */
-    public Point getPoint2() { return point2; }
+    public double getX2() { return x2; }
 
+    public void setX(double x2) { this.x2 = x2;}
+    
+    /**
+     * @return  The y-location of the point
+     */
+    public double getY2() { return y2; }
+    
+    public void setY(double y2) { this.y2 = y2;}
+    
+    
     /**
      * Move a line
      *
@@ -68,23 +76,25 @@ public class Line extends ShapeComponent {
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public void move(double deltaX, double deltaY) throws ShapeException {
-        point1.move(deltaX, deltaY);
-        point2.move(deltaX, deltaY);
+        x1 = x1 + deltaX;
+        x2 = x2 + deltaX;
+        y1 = y1 + deltaY;
+        y2 = y2 + deltaY;
     }
 
     /**
      * @return  The length of the line
      */
     public double computeLength() {
-        return Math.sqrt(Math.pow(point2.getX() - point1.getX(), 2) +
-                         Math.pow(point2.getY() - point1.getY(), 2));
+        return Math.sqrt(Math.pow(y1 - x1, 2) +
+                         Math.pow(y2 - x2, 2));
     }
 
     /**
      * @return  The slope of the line
      */
     public double computeSlope() {
-        return (point2.getX() - point1.getX())/(point2.getY() - point1.getY());
+        return (y1 - x1/y2 - x2);
     }
 
 	@Override
@@ -97,21 +107,27 @@ public class Line extends ShapeComponent {
 	}
 	
 	@Override
-	public String printAllparameters() {
-		
-		System.out.println(getShapeType() + " " 
-		+ Double.toString(point1.getX()) + " " 
-		+ Double.toString(point1.getY()) + " "
-		+ Double.toString(point2.getX()) + " "
-		+ Double.toString(point2.getY()) + " "
-		+ "\n");
+	public String getParametersInString() {
 		
 		return 
 		getShapeType() + " " 
-		+ Double.toString(point1.getX()) + " " 
-		+ Double.toString(point1.getY()) + " "
-		+ Double.toString(point2.getX()) + " "
-		+ Double.toString(point2.getY()) + " "
+		+ Double.toString(x1) + " " 
+		+ Double.toString(x2) + " "
+		+ Double.toString(y1) + " "
+		+ Double.toString(y2) + " "
 		+ "\n";
+	}
+
+	@Override
+	public ArrayList<Double> getAllparameters() {
+		
+		ArrayList<Double> parameters = new ArrayList();
+		
+		parameters.add(x1);
+		parameters.add(x2);
+		parameters.add(y1);
+		parameters.add(y2);
+		
+		return parameters;
 	}
 }

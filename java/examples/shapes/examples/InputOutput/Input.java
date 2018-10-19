@@ -16,8 +16,55 @@ public class Input {
 
 	
 	
+	@SuppressWarnings("resource")
+	public ShapeGroup readFile(String fileName) throws IOException, ShapeException{
+		
+		File file = new File(fileName);		
+		Scanner sc = new Scanner(file); 
+		char[] myChars = fileName.toCharArray();		
+		ShapeGroup shapeGroup = new ShapeGroup("Shape group", "Imported from file");
+
+		//array that will hold inputs needed for shapes (ie coordinates, radius, etc)
+		ArrayList<Double> inputs = new ArrayList<Double>();
+		
+		if(myChars[myChars.length - 1] == 't'){
+			ShapeFactory shapeFactory = new ShapeFactory();
+			
+			while (sc.hasNextLine()){
+			
+				//get inputs
+				String shapeType = sc.nextLine();
+				//double input1 = sc.nextDouble();
+				
+				String[] tokens = shapeType.split(" ");
+				
+				
+				if(tokens[0].equals("EmbeddedImage")){
+					EmbeddedFactory embedFactory = new EmbeddedFactory();
+					shapeGroup.add(embedFactory.getImage(Double.parseDouble(tokens[1]), Double.parseDouble(tokens[2]), (tokens[5])));
+				}
+				
+				else{
+				for(int i = 1; i < tokens.length; ++i){
+					System.out.println(tokens[i]);				
+					inputs.add(Double.parseDouble(tokens[i]));					
+					}					
+				}
+				shapeGroup.add(shapeFactory.makeShape(tokens[0], inputs));
+			}
+		}
+		
+		
+		//create embadded image
+		if(myChars[myChars.length - 1] == 'p'){
+			EmbeddedFactory embedFactory = new EmbeddedFactory();			
+			shapeGroup.add(embedFactory.getImage(0, 0, fileName));
+		}
+		
+		return shapeGroup;
+}
 	
-	public void readFileTest(InputStream generalInput) throws IOException{
+public void readFileTest(InputStream generalInput) throws IOException{
 		
 		InputStream input = generalInput;
 		
@@ -39,46 +86,4 @@ public class Input {
         }      
 		input.close();
 	}
-	
-	
-	
-	@SuppressWarnings("resource")
-	public ShapeGroup readFile(String fileName) throws IOException, ShapeException{
-		
-		File file = new File(fileName);		
-		Scanner sc = new Scanner(file); 
-		char[] myChars = fileName.toCharArray();		
-		ShapeGroup shapeGroup = new ShapeGroup("Shape group", "Imported from file");
-
-		//array that will hold inputs eeded for shapes (ie coordinates, radius, etc)
-		ArrayList<Double> inputs = new ArrayList<Double>();
-		
-		if(myChars[myChars.length - 1] == 't'){
-			ShapeFactory shapeFactory = new ShapeFactory();
-			
-			while (sc.hasNextLine()){
-			
-				//get inputs
-				String shapeType = sc.nextLine();
-				//double input1 = sc.nextDouble();
-				
-				String[] tokens = shapeType.split(" ");
-				
-				for(int i = 1; i < tokens.length; ++i){
-					System.out.println(tokens[i]);
-					inputs.add(Double.parseDouble(tokens[i]));
-				}				
-				shapeGroup.add(shapeFactory.makeShape(tokens[0], inputs));
-			}
-		}
-		
-		
-		//create embadded image
-		if(myChars[myChars.length - 1] == 'p'){
-			EmbeddedFactory embedFactory = new EmbeddedFactory();			
-			shapeGroup.add(embedFactory.getImage(0, 0, fileName));
-		}
-		
-		return shapeGroup;
-}
 }

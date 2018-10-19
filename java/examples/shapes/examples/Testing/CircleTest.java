@@ -9,48 +9,18 @@ import examples.shapes.Circle;
 public class CircleTest {
 
     @Test
-    public void testValidConstruction() throws Exception {
-        Point center = new Point(1,2);
-        Circle myCircle = new Circle(center, 5);
-        assertSame(center, myCircle.getCenter());
-        assertEquals(5, myCircle.getRadius(), 0);
+    public void testValidConstruction() throws ShapeException  {
+        
 
-        myCircle = new Circle(1.3, 2.6, 2.5);
-        assertEquals(1.3, myCircle.getCenter().getX(), 0);
-        assertEquals(2.6, myCircle.getCenter().getY(), 0);
+        Circle myCircle = new Circle(1.3, 2.6, 2.5);
+        assertEquals(1.3, myCircle.getX(), 0);
+        assertEquals(2.6, myCircle.getY(), 0);
         assertEquals(2.5, myCircle.getRadius(), 0);
     }
 
     @Test
     public void testInvalidConstruction() {
 
-        try {
-            new Circle(null, 2.5);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-
-        try {
-            new Circle( new Point(1, 2), Double.POSITIVE_INFINITY);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-
-        try {
-            new Circle(new Point(1, 2), Double.NEGATIVE_INFINITY);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
-
-        try {
-            new Circle(new Point(1, 2), Double.NaN);
-            fail("Expected exception not thrown");
-        } catch (Exception e) {
-            // ignore
-        }
 
         try {
             new Circle(Double.POSITIVE_INFINITY, 2, 3);
@@ -121,28 +91,28 @@ public class CircleTest {
     @Test
     public void testMove() throws ShapeException {
         Circle myCircle = new Circle(1, 2, 5);
-        assertEquals(1, myCircle.getCenter().getX(), 0);
-        assertEquals(2, myCircle.getCenter().getY(), 0);
+        assertEquals(1, myCircle.getX(), 0);
+        assertEquals(2, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         myCircle.move(3,  4);
-        assertEquals(4, myCircle.getCenter().getX(), 0);
-        assertEquals(6, myCircle.getCenter().getY(), 0);
+        assertEquals(4, myCircle.getX(), 0);
+        assertEquals(6, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         myCircle.move(0.123,  0.456);
-        assertEquals(4.123, myCircle.getCenter().getX(), 0);
-        assertEquals(6.456, myCircle.getCenter().getY(), 0);
+        assertEquals(4.123, myCircle.getX(), 0);
+        assertEquals(6.456, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         myCircle.move(-0.123,  -0.456);
-        assertEquals(4, myCircle.getCenter().getX(), 0);
-        assertEquals(6, myCircle.getCenter().getY(), 0);
+        assertEquals(4, myCircle.getX(), 0);
+        assertEquals(6, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         myCircle.move(-12,  -26);
-        assertEquals(-8, myCircle.getCenter().getX(), 0);
-        assertEquals(-20, myCircle.getCenter().getY(), 0);
+        assertEquals(-8, myCircle.getX(), 0);
+        assertEquals(-20, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         try {
@@ -192,18 +162,18 @@ public class CircleTest {
     @Test
     public void testScale() throws ShapeException {
         Circle myCircle = new Circle(1, 2, 5);
-        assertEquals(1, myCircle.getCenter().getX(), 0);
-        assertEquals(2, myCircle.getCenter().getY(), 0);
+        assertEquals(1, myCircle.getX(), 0);
+        assertEquals(2, myCircle.getY(), 0);
         assertEquals(5, myCircle.getRadius(), 0);
 
         myCircle.scale(3);
-        assertEquals(1, myCircle.getCenter().getX(), 0);
-        assertEquals(2, myCircle.getCenter().getY(), 0);
+        assertEquals(1, myCircle.getX(), 0);
+        assertEquals(2, myCircle.getY(), 0);
         assertEquals(15, myCircle.getRadius(), 0);
 
         myCircle.scale(0.2);
-        assertEquals(1, myCircle.getCenter().getX(), 0);
-        assertEquals(2, myCircle.getCenter().getY(), 0);
+        assertEquals(1, myCircle.getX(), 0);
+        assertEquals(2, myCircle.getY(), 0);
         assertEquals(3, myCircle.getRadius(), 0);
 
         try {

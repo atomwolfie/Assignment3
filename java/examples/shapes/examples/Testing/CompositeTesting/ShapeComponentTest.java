@@ -19,6 +19,7 @@ public class ShapeComponentTest {
 		
 		ShapeComponent circle = new Circle(0,0,5);
 		
+		
 		circle.setCenter(0, 0);
 		circle.setCenter(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
 		circle.setCenter(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);

@@ -1,6 +1,12 @@
 package examples.shapes;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import com.sun.prism.paint.Color;
+
 import examples.Composite.ShapeComponent;
+import examples.InputOutput.DrawShapes;
 
 /**
  * Point
@@ -25,6 +31,7 @@ public class Point extends ShapeComponent{
         Validator.validateDouble(y, "Invalid y-location");
         this.x = x;
         this.y = y;
+       
     }
 
     /**
@@ -71,8 +78,8 @@ public class Point extends ShapeComponent{
      * @throws ShapeException   Exception throw if any parameter is invalid
      */
     public void move(double deltaX, double deltaY) throws ShapeException {
-        moveX(deltaX);
-        moveY(deltaY);
+        this.x = deltaX;
+        this.y = deltaY;
     }
 
     /**
@@ -94,10 +101,8 @@ public class Point extends ShapeComponent{
 	}
 	
 	@Override
-	public String printAllparameters() {
-					
-		Point newPoint = getCenter();
-		
+	public String getParametersInString() {
+							
 		System.out.println(getShapeType() + " " 
 		+ Double.toString(x) + " " 
 		+ Double.toString(y) + "\n");
@@ -107,4 +112,21 @@ public class Point extends ShapeComponent{
 		+ Double.toString(x) + " " 
 		+ Double.toString(y) + "\n";
 	}
+
+	@Override
+	public ArrayList<Double> getAllparameters() {
+		
+		ArrayList<Double> paramaters = new ArrayList();
+		
+		paramaters.add(x);
+		paramaters.add(y);
+		paramaters.add(1.0);
+		paramaters.add(1.0);
+		// TODO Auto-generated method stub
+		return paramaters;
+	}
+
+
+
+	
 }

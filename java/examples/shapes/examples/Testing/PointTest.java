@@ -1,9 +1,8 @@
-package Testing;
+package examples.Testing;
 
 import static org.junit.Assert.*;
 
 import examples.shapes.Point;
-import examples.shapes.Shape;
 import examples.shapes.ShapeException;
 import examples.shapes.Point;
 
