@@ -37,7 +37,7 @@ public class ShapeFactory {
 		}
 		if(shapeType.equals("EmbeddedImage")){	
 			EmbeddedFactory embedFactory = new EmbeddedFactory();
-			return embedFactory.getImage(0, 0, Double.toString(shapeInputs.get(4)));
+			return embedFactory.getImage(shapeInputs.get(2), shapeInputs.get(3), Double.toString(shapeInputs.get(4)));
 		}	
 		return null;
 			

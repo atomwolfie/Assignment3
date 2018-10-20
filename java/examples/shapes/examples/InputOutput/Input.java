@@ -58,7 +58,7 @@ public class Input {
 		//create embadded image
 		if(myChars[myChars.length - 1] == 'p'){
 			EmbeddedFactory embedFactory = new EmbeddedFactory();			
-			shapeGroup.add(embedFactory.getImage(0, 0, fileName));
+			shapeGroup.add(embedFactory.getImage(700, 700, fileName));
 		}
 		
 		return shapeGroup;

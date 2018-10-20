@@ -14,9 +14,7 @@ import examples.Composite.ShapeComponent;
 
 public class EmbeddedImage extends ShapeComponent{
 
-	//instrinsic: location(x,y)
 	
-	//extrinsic stuff:
 	private double x, y, dimensionX, dimensionY;
 	
 	private String fileName;
